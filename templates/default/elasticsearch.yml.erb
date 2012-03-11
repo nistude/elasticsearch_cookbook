@@ -1,0 +1,94 @@
+#################################### Index ####################################
+
+# Set the number of shards (splits) of an index (5 by default):
+#
+index.number_of_shards: <%= node['elasticsearch']['index']['number_of_shards'] %>
+
+# Set the number of replicas (additional copies) of an index (1 by default):
+#
+index.number_of_replicas: <%= node['elasticsearch']['index']['number_of_replicas'] %>
+
+#################################### Paths ####################################
+
+# Path to directory containing configuration (this file and logging.yml):
+#
+path.conf: <%= node['elasticsearch']['configdir'] %>
+
+# Path to directory where to store index data allocated for this node.
+#
+path.data: <%= node['elasticsearch']['datadirs'].join(',') %>
+
+# Can optionally include more than one location, causing data to be striped across
+# the locations (à la RAID 0) on a file level, favouring locations with most free
+# space on creation. For example:
+#
+# path.data: /path/to/data1,/path/to/data2
+
+# Path to temporary files:
+#
+path.work: <%= node['elasticsearch']['workdir'] %>
+
+# Path to log files:
+#
+path.logs: <%= node['elasticsearch']['logdir'] %>
+
+# Path to where plugins are installed:
+#
+# path.plugins: /path/to/plugins
+
+################################### Memory ####################################
+
+# ElasticSearch performs poorly when JVM starts swapping: you should ensure that
+# it _never_ swaps.
+#
+# Set this property to true to lock the memory:
+#
+bootstrap.mlockall: <%= node['elasticsearch']['mlockall'] %>
+
+# Make sure that the ES_MIN_MEM and ES_MAX_MEM environment variables are set
+# to the same value, and that the machine has enough memory to allocate
+# for ElasticSearch, leaving enough memory for the operating system itself.
+#
+# You should also make sure that the ElasticSearch process is allowed to lock
+# the memory, eg. by using `ulimit -l unlimited`.
+
+############################## Network And HTTP ###############################
+
+# ElasticSearch, by default, binds itself to the 0.0.0.0 address, and listens
+# on port [9200-9300] for HTTP traffic and on port [9300-9400] for node-to-node
+# communication. (the range means that if the port is busy, it will automatically
+# try the next port).
+
+# Set the bind address specifically (IPv4 or IPv6):
+#
+# network.bind_host: 192.168.0.1
+
+# Set the address other nodes will use to communicate with this node. If not
+# set, it is automatically derived. It must point to an actual IP address.
+#
+# network.publish_host: 192.168.0.1
+
+# Set both 'bind_host' and 'publish_host':
+#
+network.host: <%= node['elasticsearch']['network']['host'] %>
+
+# Set a custom port for the node to node communication (9300 by default):
+#
+# transport.tcp.port: 9300
+
+# Enable compression for all communication between nodes (disabled by default):
+#
+# transport.tcp.compress: true
+
+# Set a custom port to listen for HTTP traffic:
+#
+# http.port: 9200
+
+# Set a custom allowed content length:
+#
+# http.max_content_length: 100mb
+
+# Disable HTTP completely:
+#
+# http.enabled: false
+

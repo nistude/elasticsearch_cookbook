@@ -1,0 +1,5 @@
+#!/bin/bash
+
+cd <%= node['elasticsearch']['prefix'] %>/elasticsearch-<%= node['elasticsearch']['version'] %>
+exec 2>&1
+exec chpst -e /etc/sv/elasticsearch/env -u <%= node['elasticsearch']['user'] %> ./bin/elasticsearch -f

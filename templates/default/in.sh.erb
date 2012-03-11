@@ -1,0 +1,18 @@
+ES_HOME='<%= "#{node['elasticsearch']['prefix']}/elasticsearch-#{node['elasticsearch']['version']}" %>'
+ES_CLASSPATH=$ES_CLASSPATH:$ES_HOME/lib/*:$ES_HOME/lib/sigar/*
+
+ES_JAVA_OPTS="
+  -server
+  -Djava.net.preferIPv4Stack=true
+  -Des.config=<%= node['elasticsearch']['configdir'] %>/elasticsearch.yml
+  -Xms<%= node['elasticsearch']['min_mem'] %>
+  -Xmx<%= node['elasticsearch']['max_mem'] %>
+  -Xss128k
+  -XX:+UseParNewGC
+  -XX:+UseConcMarkSweepGC
+  -XX:+CMSParallelRemarkEnabled
+  -XX:SurvivorRatio=8
+  -XX:MaxTenuringThreshold=1
+  -XX:CMSInitiatingOccupancyFraction=75
+  -XX:+UseCMSInitiatingOccupancyOnly
+  -XX:+HeapDumpOnOutOfMemoryError"
