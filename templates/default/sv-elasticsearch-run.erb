@@ -2,4 +2,6 @@
 
 cd <%= node['elasticsearch']['prefix'] %>/elasticsearch-<%= node['elasticsearch']['version'] %>
 exec 2>&1
+ulimit -l <%= node['elasticsearch']['limits']['memlock'] %>
+ulimit -n <%= node['elasticsearch']['limits']['nofile'] %>
 exec chpst -e /etc/sv/elasticsearch/env -u <%= node['elasticsearch']['user'] %> ./bin/elasticsearch -f

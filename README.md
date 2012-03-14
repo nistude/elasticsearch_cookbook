@@ -32,7 +32,6 @@ Low-level recipes:
 * \_directories - setup directories used by elasticsearch
 * \_group - install elasticsearch group
 * \_runit - setup service with runit
-* \_set\_limits - setup limits in PAM
 * \_source - install elasticsearch from source
 * \_user - install elasticsearch user
 
