@@ -1,7 +1,7 @@
 # Install from source
 
 remote_file "#{Chef::Config[:file_cache_path]}/elasticsearch-#{node['elasticsearch']['version']}.tar.gz" do
-  source "https://github.com/downloads/elasticsearch/elasticsearch/elasticsearch-#{node['elasticsearch']['version']}.tar.gz"
+  source "http://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-#{node['elasticsearch']['version']}.tar.gz"
   mode "0444"
   action :create_if_missing
 end
