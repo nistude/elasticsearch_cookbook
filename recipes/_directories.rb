@@ -7,7 +7,7 @@
   directory dir do
     owner node['elasticsearch']['user']
     group node['elasticsearch']['group']
-    mode '0755'
+    mode 0755
     recursive true
   end
 end

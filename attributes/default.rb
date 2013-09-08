@@ -1,4 +1,5 @@
-default['elasticsearch']['version'] = '0.18.7'
+default['elasticsearch']['version'] = '0.20.6'
+default['elasticsearch']['cluster_name'] = 'elasticsearch'
 
 default['elasticsearch']['prefix'] = '/opt'
 default['elasticsearch']['configdir'] = '/etc/elasticsearch'
